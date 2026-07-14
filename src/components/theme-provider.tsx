@@ -10,7 +10,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       defaultTheme="system"
       enableSystem
       disableTransitionOnChange
-      storageKey="ikon-dev-tools-theme"
+      storageKey="dev-tools-theme"
       {...props}
     >
       {children}

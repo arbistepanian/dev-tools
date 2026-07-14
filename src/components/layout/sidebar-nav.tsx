@@ -6,25 +6,53 @@ import { Wrench } from "lucide-react";
 import { tools } from "@/lib/tools/registry";
 import { cn } from "@/lib/utils/cn";
 
-export function SidebarNav() {
+interface SidebarNavProps {
+  onNavigate?: () => void;
+  variant?: "drawer" | "rail";
+}
+
+export function SidebarNav({ onNavigate, variant = "drawer" }: SidebarNavProps) {
   const pathname = usePathname();
+  const isRail = variant === "rail";
+
+  const linkClass = (isActive: boolean) =>
+    cn(
+      "flex items-center gap-2 rounded-[var(--radius-button)] py-2 text-sm transition",
+      isRail
+        ? "justify-center px-2 group-hover/sidebar:justify-start group-hover/sidebar:px-3"
+        : "px-3",
+      isActive
+        ? "bg-primary-subtle text-primary font-medium"
+        : "text-copy-muted hover:bg-surface-alternate hover:text-copy-default",
+    );
+
+  const labelClass = cn(
+    "whitespace-nowrap transition-all duration-300",
+    isRail &&
+      "max-w-0 overflow-hidden opacity-0 group-hover/sidebar:max-w-48 group-hover/sidebar:opacity-100",
+  );
 
   return (
     <nav className="flex flex-col gap-1">
       <Link
         href="/"
-        className={cn(
-          "flex items-center gap-2 rounded-[var(--radius-button)] px-3 py-2 text-sm font-medium transition",
-          pathname === "/"
-            ? "bg-primary-subtle text-primary"
-            : "text-copy-muted hover:bg-surface-alternate hover:text-copy-default",
-        )}
+        onClick={onNavigate}
+        aria-label="Dashboard"
+        title={isRail ? "Dashboard" : undefined}
+        className={linkClass(pathname === "/")}
       >
-        <Wrench size={16} aria-hidden />
-        Dashboard
+        <Wrench size={16} className="shrink-0" aria-hidden />
+        <span className={labelClass}>Dashboard</span>
       </Link>
 
-      <p className="mt-4 mb-2 px-3 text-xs font-semibold uppercase tracking-wide text-copy-subtle">
+      <p
+        className={cn(
+          "mb-2 px-3 text-xs font-semibold uppercase tracking-wide text-copy-subtle transition-all duration-300",
+          isRail
+            ? "mt-2 max-h-0 overflow-hidden opacity-0 group-hover/sidebar:mt-4 group-hover/sidebar:max-h-6 group-hover/sidebar:opacity-100"
+            : "mt-4",
+        )}
+      >
         Tools
       </p>
 
@@ -36,15 +64,13 @@ export function SidebarNav() {
           <Link
             key={tool.slug}
             href={tool.href}
-            className={cn(
-              "flex items-center gap-2 rounded-[var(--radius-button)] px-3 py-2 text-sm transition",
-              isActive
-                ? "bg-primary-subtle text-primary font-medium"
-                : "text-copy-muted hover:bg-surface-alternate hover:text-copy-default",
-            )}
+            onClick={onNavigate}
+            aria-label={tool.title}
+            title={isRail ? tool.title : undefined}
+            className={linkClass(isActive)}
           >
-            <Icon size={16} aria-hidden />
-            {tool.title}
+            <Icon size={16} className="shrink-0" aria-hidden />
+            <span className={labelClass}>{tool.title}</span>
           </Link>
         );
       })}

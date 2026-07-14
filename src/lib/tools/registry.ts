@@ -1,5 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  Braces,
+  FileCode2,
   Fingerprint,
   Hash,
   KeyRound,
@@ -12,7 +14,9 @@ export type ToolSlug =
   | "uuid"
   | "base64"
   | "secrets"
-  | "jwt";
+  | "jwt"
+  | "markdown"
+  | "formatter";
 
 export interface ToolDefinition {
   slug: ToolSlug;
@@ -57,6 +61,20 @@ export const tools: ToolDefinition[] = [
     description: "Decode JWT header and payload without verification.",
     icon: Shield,
     href: "/tools/jwt",
+  },
+  {
+    slug: "markdown",
+    title: "Markdown / HTML",
+    description: "Convert Markdown to HTML and HTML back to Markdown with live preview.",
+    icon: FileCode2,
+    href: "/tools/markdown",
+  },
+  {
+    slug: "formatter",
+    title: "JSON / XML Formatter",
+    description: "Prettify, minify, and validate JSON and XML locally in your browser.",
+    icon: Braces,
+    href: "/tools/formatter",
   },
 ];
 

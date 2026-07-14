@@ -6,8 +6,8 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       <Header
-        title="Ikon Dev Tools"
-        description="Local developer utilities for the Ikon/NXTG stack."
+        title="Dev Tools"
+        description="Local developer utilities for everyday coding tasks."
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

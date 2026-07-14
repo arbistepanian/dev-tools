@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ikon Dev Tools",
-  description: "Local developer utilities for the Ikon/NXTG stack.",
+  title: "Dev Tools",
+  description: "Local developer utilities for everyday coding tasks.",
 };
 
 export default function RootLayout({

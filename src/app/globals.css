@@ -3,48 +3,48 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --dt-surface-page: #f4f4f5;
+  --dt-surface-page: #f8fafc;
   --dt-surface-container: #ffffff;
-  --dt-surface-alternate: #ececee;
-  --dt-surface-stroke: #e4e4e7;
-  --dt-copy-default: #18181b;
-  --dt-copy-muted: #71717a;
-  --dt-copy-subtle: #a1a1aa;
-  --dt-primary: #1a9375;
-  --dt-primary-hover: #15765e;
-  --dt-primary-subtle: #e6f5f1;
+  --dt-surface-alternate: #f1f5f9;
+  --dt-surface-stroke: #e2e8f0;
+  --dt-copy-default: #0f172a;
+  --dt-copy-muted: #64748b;
+  --dt-copy-subtle: #94a3b8;
+  --dt-primary: #2563eb;
+  --dt-primary-hover: #1d4ed8;
+  --dt-primary-subtle: #eff6ff;
   --dt-danger: #ef4444;
   --dt-danger-subtle: #fef2f2;
   --dt-success: #10b981;
   --dt-success-subtle: #ecfdf5;
   --dt-warning: #f59e0b;
   --dt-warning-subtle: #fffbeb;
-  --dt-border: rgba(24, 24, 27, 0.1);
-  --dt-shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.05), inset 0 -1px 0 0 rgba(0, 0, 0, 0.06);
+  --dt-border: rgba(15, 23, 42, 0.08);
+  --dt-shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.06);
   --dt-radius-card: 12px;
   --dt-radius-button: 8px;
   --dt-radius-input: 8px;
 }
 
 .dark {
-  --dt-surface-page: #0f1110;
-  --dt-surface-container: #161a18;
-  --dt-surface-alternate: #1c211f;
-  --dt-surface-stroke: #2a2f2d;
-  --dt-copy-default: #f4f4f5;
-  --dt-copy-muted: #9ca3a0;
-  --dt-copy-subtle: #b8bfb9;
-  --dt-primary: #33af8f;
-  --dt-primary-hover: #66c3ab;
-  --dt-primary-subtle: #0b3c2f;
+  --dt-surface-page: #0b1120;
+  --dt-surface-container: #111827;
+  --dt-surface-alternate: #1e293b;
+  --dt-surface-stroke: #334155;
+  --dt-copy-default: #f1f5f9;
+  --dt-copy-muted: #94a3b8;
+  --dt-copy-subtle: #64748b;
+  --dt-primary: #3b82f6;
+  --dt-primary-hover: #60a5fa;
+  --dt-primary-subtle: #172554;
   --dt-danger: #f87171;
   --dt-danger-subtle: #2a1515;
   --dt-success: #34d399;
   --dt-success-subtle: #0f2922;
   --dt-warning: #fbbf24;
   --dt-warning-subtle: #2a2010;
-  --dt-border: rgba(244, 244, 245, 0.12);
-  --dt-shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.4), inset 0 -1px 0 0 rgba(255, 255, 255, 0.06);
+  --dt-border: rgba(241, 245, 249, 0.1);
+  --dt-shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 2px -1px rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {
@@ -77,4 +77,171 @@ body {
   background: var(--dt-surface-page);
   color: var(--dt-copy-default);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.markdown-preview {
+  color: var(--dt-copy-default);
+  line-height: 1.65;
+}
+
+.markdown-preview > :first-child {
+  margin-top: 0;
+}
+
+.markdown-preview > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  margin: 1.25em 0 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-preview h1 {
+  font-size: 1.875rem;
+}
+
+.markdown-preview h2 {
+  font-size: 1.5rem;
+}
+
+.markdown-preview h3 {
+  font-size: 1.25rem;
+}
+
+.markdown-preview p,
+.markdown-preview ul,
+.markdown-preview ol,
+.markdown-preview blockquote,
+.markdown-preview pre {
+  margin: 0.75em 0;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+  padding-left: 1.5rem;
+}
+
+.markdown-preview blockquote {
+  border-left: 3px solid var(--dt-primary);
+  padding-left: 1rem;
+  color: var(--dt-copy-muted);
+}
+
+.markdown-preview a {
+  color: var(--dt-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-preview a:hover {
+  color: var(--dt-primary-hover);
+}
+
+.markdown-preview code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.875em;
+  background: var(--dt-surface-alternate);
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+}
+
+.markdown-preview pre {
+  overflow-x: auto;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-input);
+  background: var(--dt-surface-alternate);
+  padding: 1rem;
+}
+
+.markdown-preview pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown-preview hr {
+  border: none;
+  border-top: 1px solid var(--dt-border);
+  margin: 1.5em 0;
+}
+
+.markdown-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--dt-radius-input);
+}
+
+.syntax-block {
+  margin: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--dt-copy-default);
+}
+
+.syntax-key {
+  color: #2563eb;
+}
+
+.syntax-string {
+  color: #059669;
+}
+
+.syntax-number {
+  color: #d97706;
+}
+
+.syntax-boolean {
+  color: #7c3aed;
+}
+
+.syntax-null {
+  color: var(--dt-copy-muted);
+}
+
+.syntax-tag {
+  color: #2563eb;
+}
+
+.syntax-attr-name {
+  color: #0891b2;
+}
+
+.syntax-attr-value {
+  color: #059669;
+}
+
+.syntax-comment {
+  color: var(--dt-copy-muted);
+  font-style: italic;
+}
+
+.dark .syntax-key,
+.dark .syntax-tag {
+  color: #60a5fa;
+}
+
+.dark .syntax-string,
+.dark .syntax-attr-value {
+  color: #34d399;
+}
+
+.dark .syntax-number {
+  color: #fbbf24;
+}
+
+.dark .syntax-boolean {
+  color: #c4b5fd;
+}
+
+.dark .syntax-attr-name {
+  color: #67e8f9;
 }
