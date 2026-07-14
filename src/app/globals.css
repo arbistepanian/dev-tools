@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --dt-surface-page: #f4f4f5;
+  --dt-surface-container: #ffffff;
+  --dt-surface-alternate: #ececee;
+  --dt-surface-stroke: #e4e4e7;
+  --dt-copy-default: #18181b;
+  --dt-copy-muted: #71717a;
+  --dt-copy-subtle: #a1a1aa;
+  --dt-primary: #1a9375;
+  --dt-primary-hover: #15765e;
+  --dt-primary-subtle: #e6f5f1;
+  --dt-danger: #ef4444;
+  --dt-danger-subtle: #fef2f2;
+  --dt-success: #10b981;
+  --dt-success-subtle: #ecfdf5;
+  --dt-warning: #f59e0b;
+  --dt-warning-subtle: #fffbeb;
+  --dt-border: rgba(24, 24, 27, 0.1);
+  --dt-shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.05), inset 0 -1px 0 0 rgba(0, 0, 0, 0.06);
+  --dt-radius-card: 12px;
+  --dt-radius-button: 8px;
+  --dt-radius-input: 8px;
+}
+
+.dark {
+  --dt-surface-page: #0f1110;
+  --dt-surface-container: #161a18;
+  --dt-surface-alternate: #1c211f;
+  --dt-surface-stroke: #2a2f2d;
+  --dt-copy-default: #f4f4f5;
+  --dt-copy-muted: #9ca3a0;
+  --dt-copy-subtle: #b8bfb9;
+  --dt-primary: #33af8f;
+  --dt-primary-hover: #66c3ab;
+  --dt-primary-subtle: #0b3c2f;
+  --dt-danger: #f87171;
+  --dt-danger-subtle: #2a1515;
+  --dt-success: #34d399;
+  --dt-success-subtle: #0f2922;
+  --dt-warning: #fbbf24;
+  --dt-warning-subtle: #2a2010;
+  --dt-border: rgba(244, 244, 245, 0.12);
+  --dt-shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.4), inset 0 -1px 0 0 rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-surface-page: var(--dt-surface-page);
+  --color-surface-container: var(--dt-surface-container);
+  --color-surface-alternate: var(--dt-surface-alternate);
+  --color-surface-stroke: var(--dt-surface-stroke);
+  --color-copy-default: var(--dt-copy-default);
+  --color-copy-muted: var(--dt-copy-muted);
+  --color-copy-subtle: var(--dt-copy-subtle);
+  --color-primary: var(--dt-primary);
+  --color-primary-hover: var(--dt-primary-hover);
+  --color-primary-subtle: var(--dt-primary-subtle);
+  --color-danger: var(--dt-danger);
+  --color-danger-subtle: var(--dt-danger-subtle);
+  --color-success: var(--dt-success);
+  --color-success-subtle: var(--dt-success-subtle);
+  --color-warning: var(--dt-warning);
+  --color-warning-subtle: var(--dt-warning-subtle);
+  --color-border: var(--dt-border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius-card: var(--dt-radius-card);
+  --radius-button: var(--dt-radius-button);
+  --radius-input: var(--dt-radius-input);
+  --shadow-card: var(--dt-shadow-card);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--dt-surface-page);
+  color: var(--dt-copy-default);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
