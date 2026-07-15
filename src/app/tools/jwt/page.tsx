@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Header } from "@/components/layout/header";
+import { ToolPage } from "@/components/layout/tool-page";
 import { CopyButton } from "@/components/tools/copy-button";
 import { ErrorBanner } from "@/components/tools/error-banner";
 import { ToolPanel } from "@/components/tools/tool-panel";
@@ -38,14 +38,13 @@ export default function JwtPage() {
   }, [debouncedToken]);
 
   return (
-    <div className="space-y-8">
-      <Header title={tool?.title ?? "JWT Decoder"} description={tool?.description} />
+    <ToolPage title={tool?.title ?? "JWT Decoder"} description={tool?.description}>
+      <div className="space-y-6">
+        <div className="rounded-[var(--radius-input)] border border-warning/30 bg-warning-subtle px-4 py-3 text-sm text-copy-default">
+          Decode only — do not paste production credentials. Signature is not verified.
+        </div>
 
-      <div className="rounded-[var(--radius-input)] border border-warning/30 bg-warning-subtle px-4 py-3 text-sm text-copy-default">
-        Decode only — do not paste production credentials. Signature is not verified.
-      </div>
-
-      <ToolPanel title="Decode JWT" description="Paste a JWT to inspect header and payload.">
+        <ToolPanel title="Decode JWT" description="Paste a JWT to inspect header and payload.">
         <div className="space-y-2">
           <Label htmlFor="jwt-token">JWT</Label>
           <Textarea
@@ -83,8 +82,9 @@ export default function JwtPage() {
             </div>
           </div>
         ) : null}
-      </ToolPanel>
-    </div>
+        </ToolPanel>
+      </div>
+    </ToolPage>
   );
 }
 

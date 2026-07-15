@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { RefreshCw } from "lucide-react";
-import { Header } from "@/components/layout/header";
-import { CopyButton } from "@/components/tools/copy-button";
+import { ToolPage } from "@/components/layout/tool-page";
 import { ErrorBanner } from "@/components/tools/error-banner";
 import { ResultField } from "@/components/tools/result-field";
 import { ToolPanel } from "@/components/tools/tool-panel";
@@ -37,9 +36,7 @@ export default function SecretsPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <Header title={tool?.title ?? "Secret Generator"} description={tool?.description} />
-
+    <ToolPage title={tool?.title ?? "Secret Generator"} description={tool?.description}>
       <ToolPanel
         title="Generate random secret"
         description="Uses crypto.getRandomValues() in the browser."
@@ -56,7 +53,7 @@ export default function SecretsPage() {
               min={SECRET_BYTE_LIMITS.min}
               max={SECRET_BYTE_LIMITS.max}
               value={lengthBytes}
-              onChange={(e) => setLengthBytes(Number(e.target.value))}
+              onChange={(event) => setLengthBytes(Number(event.target.value))}
             />
           </FormField>
 
@@ -64,7 +61,7 @@ export default function SecretsPage() {
             <Select
               id="secret-encoding"
               value={encoding}
-              onChange={(e) => setEncoding(e.target.value as SecretEncoding)}
+              onChange={(event) => setEncoding(event.target.value as SecretEncoding)}
             >
               <option value="hex">hex</option>
               <option value="base64">base64</option>
@@ -79,13 +76,8 @@ export default function SecretsPage() {
 
         {error ? <ErrorBanner message={error} /> : null}
 
-        {secret ? (
-          <div className="space-y-3">
-            <ResultField label="Secret" value={secret} />
-            <CopyButton value={secret} label="Copy secret" size="md" />
-          </div>
-        ) : null}
+        {secret ? <ResultField label="Secret" value={secret} /> : null}
       </ToolPanel>
-    </div>
+    </ToolPage>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { RefreshCw } from "lucide-react";
-import { Header } from "@/components/layout/header";
+import { ToolPage } from "@/components/layout/tool-page";
 import { CopyButton } from "@/components/tools/copy-button";
 import { ErrorBanner } from "@/components/tools/error-banner";
 import { ToolPanel } from "@/components/tools/tool-panel";
@@ -34,9 +34,7 @@ export default function UuidPage() {
   const output = uuids.join("\n");
 
   return (
-    <div className="space-y-8">
-      <Header title={tool?.title ?? "UUID Generator"} description={tool?.description} />
-
+    <ToolPage title={tool?.title ?? "UUID Generator"} description={tool?.description}>
       <ToolPanel title="Generate UUIDs" description="Uses crypto.randomUUID() in the browser.">
         <FormField
           label="Count"
@@ -75,6 +73,6 @@ export default function UuidPage() {
           />
         </div>
       </ToolPanel>
-    </div>
+    </ToolPage>
   );
 }

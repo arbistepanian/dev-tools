@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, Wrench, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { AppLogo } from "@/components/layout/app-logo";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,9 @@ import { Button } from "@/components/ui/button";
 interface AppShellProps {
   children: React.ReactNode;
 }
+
+const shellHeaderClass =
+  "flex h-14 shrink-0 items-center border-b border-border bg-surface-container";
 
 export function AppShell({ children }: AppShellProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -21,13 +25,15 @@ export function AppShell({ children }: AppShellProps) {
       <aside
         className="group/sidebar fixed inset-y-0 left-0 z-30 hidden w-18 flex-col overflow-hidden border-r border-border bg-surface-container shadow-card transition-[width] duration-300 ease-out hover:w-72 hover:shadow-xl lg:flex"
       >
-        <div className="flex items-center gap-2 overflow-hidden border-b border-border px-4 py-4">
-          <Wrench size={20} className="shrink-0 text-primary" aria-hidden />
+        <div className={`${shellHeaderClass} px-2 group-hover/sidebar:px-4`}>
           <Link
             href="/"
-            className="truncate text-lg font-semibold whitespace-nowrap text-copy-default opacity-0 transition-opacity duration-300 group-hover/sidebar:opacity-100"
+            className="flex w-full items-center justify-center gap-2 overflow-hidden group-hover/sidebar:justify-start"
           >
-            Dev Tools
+            <AppLogo size={20} />
+            <span className="truncate text-lg font-semibold whitespace-nowrap text-copy-default opacity-0 transition-opacity duration-300 group-hover/sidebar:opacity-100">
+              Dev Tools
+            </span>
           </Link>
         </div>
 
@@ -51,13 +57,13 @@ export function AppShell({ children }: AppShellProps) {
           isDrawerOpen ? "translate-x-0" : "-translate-x-full",
         ].join(" ")}
       >
-        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+        <div className={`${shellHeaderClass} justify-between px-4`}>
           <Link
             href="/"
             className="flex items-center gap-2 text-lg font-semibold text-copy-default"
             onClick={closeDrawer}
           >
-            <Wrench size={20} className="text-primary" aria-hidden />
+            <AppLogo size={20} />
             Dev Tools
           </Link>
           <Button
@@ -75,7 +81,9 @@ export function AppShell({ children }: AppShellProps) {
       </aside>
 
       <div className="flex min-h-screen min-w-0 flex-col lg:pl-18">
-        <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-border bg-surface-container/80 px-4 py-3 backdrop-blur-md">
+        <header
+          className={`${shellHeaderClass} sticky top-0 z-20 gap-3 bg-surface-container/80 px-4 backdrop-blur-md`}
+        >
           <Button
             variant="ghost"
             size="sm"

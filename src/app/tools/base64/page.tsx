@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ArrowDownUp } from "lucide-react";
-import { Header } from "@/components/layout/header";
+import { ToolPage } from "@/components/layout/tool-page";
 import { CopyButton } from "@/components/tools/copy-button";
 import { ErrorBanner } from "@/components/tools/error-banner";
 import { ToolPanel } from "@/components/tools/tool-panel";
@@ -48,9 +48,7 @@ export default function Base64Page() {
   }
 
   return (
-    <div className="space-y-8">
-      <Header title={tool?.title ?? "Base64"} description={tool?.description} />
-
+    <ToolPage title={tool?.title ?? "Base64"} description={tool?.description}>
       <ToolPanel title="Encode / decode" description="UTF-8 safe text conversion.">
         <Toggle checked={urlSafe} onChange={setUrlSafe} label="URL-safe base64" />
 
@@ -92,6 +90,6 @@ export default function Base64Page() {
           />
         </div>
       </ToolPanel>
-    </div>
+    </ToolPage>
   );
 }

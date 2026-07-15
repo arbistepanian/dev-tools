@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { hashMd5, hashSha, hashString } from "./hash.ts";
+import {
+  computeHash,
+  formatHashBytes,
+  hashMd5,
+  hashSha,
+  hashString,
+} from "./hash.ts";
 
 test("hashMd5 returns hex digest", () => {
   assert.equal(hashMd5("hello"), "5d41402abc4b2a76b9719d911017c592");
@@ -32,4 +38,66 @@ test("hashString dispatches by algorithm", async () => {
     await hashString("hello", "sha256"),
     await hashSha("sha256", "hello"),
   );
+});
+
+test("computeHash returns base64 output", async () => {
+  const digest = await computeHash({
+    message: "hello",
+    algorithm: "sha256",
+    outputFormat: "base64",
+  });
+
+  assert.equal(digest, "LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=");
+});
+
+test("computeHash returns uppercase hex output", async () => {
+  const digest = await computeHash({
+    message: "hello",
+    algorithm: "md5",
+    uppercaseHex: true,
+  });
+
+  assert.equal(digest, "5D41402ABC4B2A76B9719D911017C592");
+});
+
+test("computeHash returns HMAC digest", async () => {
+  const digest = await computeHash({
+    message: "hello",
+    algorithm: "sha256",
+    mode: "hmac",
+    secret: "secret",
+  });
+
+  assert.equal(
+    digest,
+    "88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b",
+  );
+});
+
+test("computeHash returns MD5 HMAC digest", async () => {
+  const digest = await computeHash({
+    message: "hello",
+    algorithm: "md5",
+    mode: "hmac",
+    secret: "secret",
+  });
+
+  assert.equal(digest, "bade63863c61ed0b3165806ecd6acefc");
+});
+
+test("computeHash throws when HMAC secret is missing", async () => {
+  await assert.rejects(
+    () =>
+      computeHash({
+        message: "hello",
+        algorithm: "sha256",
+        mode: "hmac",
+      }),
+    /Secret key is required for HMAC/,
+  );
+});
+
+test("formatHashBytes supports base64 output", () => {
+  const bytes = new Uint8Array([102, 111, 111]).buffer;
+  assert.equal(formatHashBytes(bytes, "base64"), "Zm9v");
 });

@@ -30,7 +30,7 @@ export const tools: ToolDefinition[] = [
   {
     slug: "hash",
     title: "Hash",
-    description: "Compute MD5, SHA-1, SHA-256, or SHA-512 digests for any string.",
+    description: "Compute digests and HMACs with MD5, SHA-1, SHA-256, or SHA-512.",
     icon: Hash,
     href: "/tools/hash",
   },
