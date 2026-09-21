@@ -3,6 +3,7 @@ import {
   Braces,
   FileCode2,
   Fingerprint,
+  GitCompare,
   Hash,
   KeyRound,
   LayoutGrid,
@@ -16,7 +17,8 @@ export type ToolSlug =
   | "secrets"
   | "jwt"
   | "markdown"
-  | "formatter";
+  | "formatter"
+  | "compare";
 
 export interface ToolDefinition {
   slug: ToolSlug;
@@ -75,6 +77,13 @@ export const tools: ToolDefinition[] = [
     description: "Prettify, minify, and validate JSON and XML locally in your browser.",
     icon: Braces,
     href: "/tools/formatter",
+  },
+  {
+    slug: "compare",
+    title: "String Compare",
+    description: "Compare two strings and highlight the differences.",
+    icon: GitCompare,
+    href: "/tools/compare",
   },
 ];
 
